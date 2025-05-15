@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Row, TabContainer } from "react-bootstrap";
+import { Container, Form, Row } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 
 class BookList extends Component {
@@ -9,27 +9,24 @@ class BookList extends Component {
 
   render() {
     return (
-      <>
-        <TabContainer fluid>
-          <Form.Control
-            type="text"
-            placeholder="Cerca un libro..."
-            value={this.state.search}
-            onChange={(e) => this.setState({ search: e.target.value })}
-          />
-          <Row>
-            {this.props.books
-              .filter((book) =>
-                book.title
-                  .toLowerCase()
-                  .includes(this.state.search.toLowerCase())
-              )
-              .map((book) => (
-                <SingleBook key={book.asin} book={book} />
-              ))}
-          </Row>
-        </TabContainer>
-      </>
+      <Container>
+        <Form.Control
+          type="text"
+          placeholder="Cerca un libro..."
+          className="my-5"
+          value={this.state.search}
+          onChange={(e) => this.setState({ search: e.target.value })}
+        />
+        <Row>
+          {this.props.book
+            .filter((book) =>
+              book.title.toLowerCase().includes(this.state.search.toLowerCase())
+            ).slice(0,24)
+            .map((item) => (
+              <SingleBook books={item} />
+            ))}
+        </Row>
+      </Container>
     );
   }
 }

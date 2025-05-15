@@ -45,7 +45,7 @@ class App extends Component {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <BookList books={this.state.books} />
+        <BookList book={this.state.books}/>
         <MyFooter title="React" />
       </>
     );
